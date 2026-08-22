@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (!boxes.length) return;
 
     const jsonFiles = {
-        'dividend_': 'dividend.json',
-        'hotstock_': 'hotstock.json',
-        'stockinfo_': 'stockinfo.json'
+        'stockinfo_': '2000_stockinfo.json',
+        'hotstock_': '3000_hotstock.json',
+        'dividend_': '5000_dividend.json'
     };
 
     const baseUrl = 'https://raw.githubusercontent.com/katekdy55-dot/link_html/main/';
