@@ -1,23 +1,20 @@
 (function () {
 
+    const jsonFiles = {
+        'stockinfo_': '2000_stockinfo.json',
+        'hotstock_': '3000_hotstock.json',
+        'dividend_': '5000_dividend.json'
+    };
+
+    const baseUrl = 'https://raw.githubusercontent.com/katekdy55-dot/link_html/main/';
+
     async function loadJsonContents() {
 
         const boxes = document.querySelectorAll('[data-json]');
 
-        console.log('[JSON Loader] data-json 개수:', boxes.length);
-
         if (!boxes.length) {
             return;
         }
-
-        const jsonFiles = {
-            'stockinfo_': '2000_stockinfo.json',
-            'hotstock_': '3000_hotstock.json',
-            'dividend_': '5000_dividend.json'
-        };
-
-        const baseUrl =
-            'https://raw.githubusercontent.com/katekdy55-dot/link_html/main/';
 
         const groups = {};
 
@@ -25,7 +22,9 @@
 
             const id = box.getAttribute('data-json');
 
-            if (!id) return;
+            if (!id) {
+                return;
+            }
 
             for (const prefix in jsonFiles) {
 
@@ -48,11 +47,14 @@
 
             try {
 
-                console.log('[JSON Loader] 요청:', file);
+                console.log('[JSON Loader] 불러오는 파일:', file);
 
-                const response = await fetch(baseUrl + file, {
-                    cache: 'no-cache'
-                });
+                const response = await fetch(
+                    baseUrl + file + '?v=' + Date.now(),
+                    {
+                        cache: 'no-store'
+                    }
+                );
 
                 if (!response.ok) {
                     throw new Error(
@@ -62,7 +64,7 @@
 
                 const data = await response.json();
 
-                console.log('[JSON Loader] 로드 성공:', file);
+                console.log('[JSON Loader] JSON 로드 성공:', file);
 
                 groups[prefix].forEach(function (box) {
 
@@ -70,12 +72,39 @@
 
                     const item = data[id];
 
-                    if (
-                        !item ||
-                        item.active === false ||
-                        !item.html
-                    ) {
+                    if (!item) {
+
+                        console.warn(
+                            '[JSON Loader] 해당 ID 없음:',
+                            id
+                        );
+
                         box.remove();
+
+                        return;
+                    }
+
+                    if (item.active === false) {
+
+                        console.log(
+                            '[JSON Loader] 비활성:',
+                            id
+                        );
+
+                        box.remove();
+
+                        return;
+                    }
+
+                    if (!item.html) {
+
+                        console.warn(
+                            '[JSON Loader] HTML 없음:',
+                            id
+                        );
+
+                        box.remove();
+
                         return;
                     }
 
@@ -99,15 +128,11 @@
                 groups[prefix].forEach(function (box) {
                     box.remove();
                 });
+
             }
         }
     }
 
-
-    /*
-     * DOMContentLoaded 이전이면 이벤트를 기다리고,
-     * 이미 DOM이 만들어졌으면 즉시 실행
-     */
     if (document.readyState === 'loading') {
 
         document.addEventListener(
