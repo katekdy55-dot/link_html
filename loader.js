@@ -4,8 +4,9 @@
 
         const boxes = document.querySelectorAll('[data-json]');
 
+        console.log('[JSON Loader] data-json 개수:', boxes.length);
+
         if (!boxes.length) {
-            console.log('[JSON Loader] 호출 영역이 없습니다.');
             return;
         }
 
@@ -15,7 +16,8 @@
             'dividend_': '5000_dividend.json'
         };
 
-        const baseUrl = 'https://raw.githubusercontent.com/katekdy55-dot/link_html/main/';
+        const baseUrl =
+            'https://raw.githubusercontent.com/katekdy55-dot/link_html/main/';
 
         const groups = {};
 
@@ -40,17 +42,17 @@
             }
         });
 
-        console.log('[JSON Loader] 호출 영역:', groups);
-
         for (const prefix in groups) {
 
             const file = jsonFiles[prefix];
 
             try {
 
-                console.log('[JSON Loader] 불러오는 파일:', file);
+                console.log('[JSON Loader] 요청:', file);
 
-                const response = await fetch(baseUrl + file);
+                const response = await fetch(baseUrl + file, {
+                    cache: 'no-cache'
+                });
 
                 if (!response.ok) {
                     throw new Error(
@@ -60,7 +62,7 @@
 
                 const data = await response.json();
 
-                console.log('[JSON Loader] JSON 로드 성공:', file);
+                console.log('[JSON Loader] 로드 성공:', file);
 
                 groups[prefix].forEach(function (box) {
 
@@ -73,16 +75,16 @@
                         item.active === false ||
                         !item.html
                     ) {
-                        console.log('[JSON Loader] 데이터 없음:', id);
-
                         box.remove();
-
                         return;
                     }
 
                     box.innerHTML = item.html;
 
-                    console.log('[JSON Loader] 출력 완료:', id);
+                    console.log(
+                        '[JSON Loader] 출력 완료:',
+                        id
+                    );
 
                 });
 
@@ -102,6 +104,10 @@
     }
 
 
+    /*
+     * DOMContentLoaded 이전이면 이벤트를 기다리고,
+     * 이미 DOM이 만들어졌으면 즉시 실행
+     */
     if (document.readyState === 'loading') {
 
         document.addEventListener(
