@@ -1,175 +1,118 @@
 (function () {
 
-    const jsonFiles = {
-        'stockinfo_': '2000_stockinfo.json',
-        'hotstock_': '3000_hotstock.json',
-        'dividend_': '5000_dividend.json'
-    };
+    async function loadJsonContents() {
 
-    const baseUrl =
-        'https://raw.githubusercontent.com/katekdy55-dot/link_html/main/';
+        const boxes = document.querySelectorAll('[data-json]');
 
-    const loadedData = {};
-    const loadingData = {};
-
-    function getPrefix(id) {
-
-        for (const prefix in jsonFiles) {
-
-            if (id.startsWith(prefix)) {
-                return prefix;
-            }
-
-        }
-
-        return null;
-    }
-
-
-    async function loadJson(prefix) {
-
-        if (loadedData[prefix]) {
-            return loadedData[prefix];
-        }
-
-        if (loadingData[prefix]) {
-            return loadingData[prefix];
-        }
-
-        const file = jsonFiles[prefix];
-
-        loadingData[prefix] = fetch(
-            baseUrl + file + '?v=' + Date.now(),
-            {
-                cache: 'no-store'
-            }
-        )
-        .then(function (response) {
-
-            if (!response.ok) {
-                throw new Error(
-                    file + ' 불러오기 실패: ' + response.status
-                );
-            }
-
-            return response.json();
-
-        })
-        .then(function (data) {
-
-            loadedData[prefix] = data;
-
-            return data;
-
-        })
-        .catch(function (error) {
-
-            console.error(
-                '[JSON Loader 오류]',
-                file,
-                error
-            );
-
-            return null;
-
-        });
-
-        return loadingData[prefix];
-
-    }
-
-
-    async function processBox(box) {
-
-        if (box.dataset.jsonLoaded === 'true') {
+        if (!boxes.length) {
+            console.log('[JSON Loader] 호출 영역이 없습니다.');
             return;
         }
 
-        const id = box.getAttribute('data-json');
+        const jsonFiles = {
+            'stockinfo_': '2000_stockinfo.json',
+            'hotstock_': '3000_hotstock.json',
+            'dividend_': '5000_dividend.json'
+        };
 
-        if (!id) {
-            return;
-        }
+        const baseUrl = 'https://raw.githubusercontent.com/katekdy55-dot/link_html/main/';
 
-        const prefix = getPrefix(id);
-
-        if (!prefix) {
-            console.warn(
-                '[JSON Loader] 알 수 없는 data-json:',
-                id
-            );
-
-            return;
-        }
-
-        const data = await loadJson(prefix);
-
-        if (!data) {
-            return;
-        }
-
-        const item = data[id];
-
-        if (
-            !item ||
-            item.active === false ||
-            !item.html
-        ) {
-            box.remove();
-            return;
-        }
-
-        box.innerHTML = item.html;
-
-        box.dataset.jsonLoaded = 'true';
-
-    }
-
-
-    function processAll() {
-
-        const boxes =
-            document.querySelectorAll('[data-json]');
+        const groups = {};
 
         boxes.forEach(function (box) {
 
-            processBox(box);
+            const id = box.getAttribute('data-json');
 
+            if (!id) return;
+
+            for (const prefix in jsonFiles) {
+
+                if (id.startsWith(prefix)) {
+
+                    if (!groups[prefix]) {
+                        groups[prefix] = [];
+                    }
+
+                    groups[prefix].push(box);
+
+                    break;
+                }
+            }
         });
 
+        console.log('[JSON Loader] 호출 영역:', groups);
+
+        for (const prefix in groups) {
+
+            const file = jsonFiles[prefix];
+
+            try {
+
+                console.log('[JSON Loader] 불러오는 파일:', file);
+
+                const response = await fetch(baseUrl + file);
+
+                if (!response.ok) {
+                    throw new Error(
+                        file + ' 불러오기 실패: ' + response.status
+                    );
+                }
+
+                const data = await response.json();
+
+                console.log('[JSON Loader] JSON 로드 성공:', file);
+
+                groups[prefix].forEach(function (box) {
+
+                    const id = box.getAttribute('data-json');
+
+                    const item = data[id];
+
+                    if (
+                        !item ||
+                        item.active === false ||
+                        !item.html
+                    ) {
+                        console.log('[JSON Loader] 데이터 없음:', id);
+
+                        box.remove();
+
+                        return;
+                    }
+
+                    box.innerHTML = item.html;
+
+                    console.log('[JSON Loader] 출력 완료:', id);
+
+                });
+
+            } catch (error) {
+
+                console.error(
+                    '[JSON Loader] 오류:',
+                    file,
+                    error
+                );
+
+                groups[prefix].forEach(function (box) {
+                    box.remove();
+                });
+            }
+        }
     }
 
 
-    // 페이지가 이미 로딩된 경우
     if (document.readyState === 'loading') {
 
         document.addEventListener(
             'DOMContentLoaded',
-            processAll
+            loadJsonContents
         );
 
     } else {
 
-        processAll();
+        loadJsonContents();
 
     }
-
-
-    // 티스토리에서 본문이 나중에 생성되는 경우까지 감지
-    const observer = new MutationObserver(function () {
-
-        processAll();
-
-    });
-
-
-    observer.observe(
-        document.documentElement,
-        {
-            childList: true,
-            subtree: true
-        }
-    );
-
 
 })();
