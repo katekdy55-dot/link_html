@@ -20,6 +20,6 @@
   
   "dividend_5": {
     "active": true,
-    "html": "<p data-ke-size=\"size16\">&nbsp;</p>\n<div style=\"background-color: #acc7b4; padding: 15px; border-radius: 5px; margin: 20px 0;\">\n<div class=\"toc-center\"><span style=\"color: #a4193d; font-size: 30px;\">나만 미장 안 했어?</span><br /><span style=\"color: #692D03; font-size: 18px;\">요즘은 ETF부터</span></div>\n<div class=\"aros-toc-dy-row dy-hover-div\"><a href=\"https://index004.ljsgood.com/#kate_3\">📈지수 ETF: 안정파, 묻어</a></div>\n<div class=\"aros-toc-dy-row dy-hover-div\"><a href=\"https://index004.ljsgood.com/#kate_1\">💰배당 ETF: 현금파, 받아</a></div>\n<div class=\"aros-toc-dy-row dy-hover-div\"><a href=\"https://index004.ljsgood.com/#kate_2\">🚀성장 ETF: 공격파, 질러</a></div>\n</div>"
+    "html": "<p data-ke-size=\"size16\">&nbsp;</p>\n<div style=\"background-color: #acc7b4; padding: 15px; border-radius: 5px; margin: 20px 0;\">\n<div class=\"toc-center\"><span style=\"color: #a4193d; font-size: 30px;\">나만 미장 안 했어?</span><br /><span style=\"color: #692D03; font-size: 18px;\">요즘은 ETF부터</span></div>\n<div class=\"aros-toc-dy-row dy-hover-div\"><a href=\"https://index004.ljsgood.com/#kate_3\">📈지수 ETF: 안정파, 묻어!</a></div>\n<div class=\"aros-toc-dy-row dy-hover-div\"><a href=\"https://index004.ljsgood.com/#kate_1\">💰배당 ETF: 현금파, 받아!</a></div>\n<div class=\"aros-toc-dy-row dy-hover-div\"><a href=\"https://index004.ljsgood.com/#kate_2\">🚀성장 ETF: 공격파, 질러!</a></div>\n</div>"
   }
 }
