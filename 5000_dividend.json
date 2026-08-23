@@ -2,24 +2,29 @@
   "_comment": "배당금 포스팅(5000부터)",
   "dividend_1": {
     "active": true,
+    "_comment": "고배당 국민주",
      "html" : "<div style=\"text-align: center; margin: 50px 0;\"><div style=\"display: inline-block; max-width: 640px; width: 100%; text-align: left;\"> <div style=\"display: inline-block; background: #083344; color: #ffffff; font-size: 18px; font-weight: bold; padding: 8px 18px; border-radius: 8px 8px 0 0;\">👀 나만 없나?</div> <a style=\"display: flex; align-items: stretch; text-decoration: none; border-radius: 0 14px 14px 14px; overflow: hidden;\" href=\"https://dividends1.kdybest.com/#financial\"> <span style=\"flex: 1; box-sizing: border-box; padding: 26px 28px; background: #00B4D8; color: #ffffff; font-weight: 800; font-size: 27px; letter-spacing: 1px; text-align: center;\">고배당 국민주 7</span> <span style=\"width: 72px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #00839E; color: #ffffff; font-size: 26px; font-weight: 900;\">→</span> </a> </div></div>"
   },
   "dividend_2": {
     "active": true,
+    "_comment": "사계절 배당주",
     "html" : "<div style=\"text-align: center; margin: 50px 0;\"><div style=\"display: inline-block; max-width: 640px; width: 100%; text-align: left;\"> <div style=\"display: inline-block; background: #064E3B; color: #ffffff; font-size: 18px; font-weight: bold; padding: 8px 18px; border-radius: 8px 8px 0 0;\">1년에 4번이나❓</div> <a style=\"display: flex; align-items: stretch; text-decoration: none; border-radius: 0 14px 14px 14px; overflow: hidden;\" href=\"https://dividends2.kdybest.com/#quarterly\"> <span style=\"flex: 1; box-sizing: border-box; padding: 26px 28px; background: #76C800; color: #ffffff; font-weight: 800; font-size: 27px; letter-spacing: 1px; text-align: center;\">4계절 배당주 7</span> <span style=\"width: 72px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #549100; color: #ffffff; font-size: 26px; font-weight: 900;\">→</span> </a> </div></div>"
   },
   "dividend_3": {
     "active": true,
+    "_comment": "10% 배당주",
     "html" : "<div style=\"text-align: center; margin: 50px 0;\"><div style=\"display: inline-block; max-width: 640px; width: 100%; text-align: left;\"> <div style=\"display: inline-block; background: #064E3B; color: #ffffff; font-size: 18px; font-weight: bold; padding: 8px 18px; border-radius: 8px 8px 0 0;\">😱 이게 가능해?!</div> <a style=\"display: flex; align-items: stretch; text-decoration: none; border-radius: 0 14px 14px 14px; overflow: hidden;\" href=\"https://dividends3.kdybest.com/#premium\"> <span style=\"flex: 1; box-sizing: border-box; padding: 26px 28px; background: #FF6B00; color: #ffffff; font-weight: 800; font-size: 27px; letter-spacing: 1px; text-align: center;\">10% 배당주 7</span> <span style=\"width: 72px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #C44A00; color: #ffffff; font-size: 26px; font-weight: 900;\">→</span> </a> </div></div>"
   },
   
   "dividend_4": {
     "active": true,
+    "_comment": "테마주 카드",
     "html": "<p data-ke-size=\"size16\">&nbsp;</p>\n<div style=\"background-color: #d1e0c1; padding: 15px; border-radius: 5px; margin: 20px 0;\">\n  <div class=\"toc-center\"><span style=\"color: #f95700; font-size: 30px;\">코스피 1만 간다!?</span><br /><span style=\"color: #1b711d; font-size: 18px;\">여기가 핵심 🎯</span></div>\n  <div class=\"card-container\">\n    <a class=\"card\" href=\"https://index001.kdybest.com/\">🔸모든 테마 보기</a>\n    <a class=\"card\" href=\"https://post001.kdybest.com/2025/06/3.html\">💻반도체·AI·첨단기술</a>\n    <a class=\"card\" href=\"https://post004.kdybest.com/2025/06/2.html\">🚀우주항공·방산·로봇</a>\n    <a class=\"card\" href=\"https://post001.kdybest.com/2025/06/4.html\">📰정책·정치·이슈</a>\n  </div>\n</div>"
   },
   
   "dividend_5": {
     "active": true,
+    "_comment": "미장 etf",
     "html": "<p data-ke-size=\"size16\">&nbsp;</p>\n<div style=\"background-color: #acc7b4; padding: 15px; border-radius: 5px; margin: 20px 0;\">\n<div class=\"toc-center\"><span style=\"color: #a4193d; font-size: 30px;\">나만 미장 안 했어?</span><br /><span style=\"color: #692D03; font-size: 18px;\">요즘은 ETF부터</span></div>\n<div class=\"aros-toc-dy-row dy-hover-div\"><a href=\"https://index004.ljsgood.com/#kate_3\">📈지수 ETF: 안정파, 묻어!</a></div>\n<div class=\"aros-toc-dy-row dy-hover-div\"><a href=\"https://index004.ljsgood.com/#kate_1\">💰배당 ETF: 현금파, 받아!</a></div>\n<div class=\"aros-toc-dy-row dy-hover-div\"><a href=\"https://index004.ljsgood.com/#kate_2\">🚀성장 ETF: 공격파, 질러!</a></div>\n</div>"
   }
 }
